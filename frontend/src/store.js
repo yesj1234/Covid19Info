@@ -1,6 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { covidInfoReducer } from "./reducers/covidReducers";
 import {
   noteCreateReducer,
   noteDeleteReducer,
@@ -20,6 +21,7 @@ import {
 } from "./reducers/boardReducers";
 
 const reducer = combineReducers({
+  covidInfo: covidInfoReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userUpdate: userUpdateReducer,

@@ -38,6 +38,12 @@ const Header = ({ setSearch }) => {
             )}
           </Nav>
           <Nav>
+            <Nav.Link href="/covid-info">Covid Info</Nav.Link>
+          </Nav>
+          <Nav>
+            <Nav.Link href="/board">Board</Nav.Link>
+          </Nav>
+          <Nav>
             {userInfo ? (
               <>
                 <NavDropdown
