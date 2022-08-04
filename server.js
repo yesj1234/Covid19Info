@@ -6,11 +6,12 @@ const path = require("path");
 const userRoutes = require("./backend/routes/userRoutes");
 const noteRoutes = require("./backend/routes/noteRoutes");
 const postRoutes = require("./backend/routes/boardRoutes");
+const covidRoutes = require("./backend/routes/covidRoutes");
 const {
   errorHandler,
   notFound,
 } = require("./backend/middlewares/errorMiddleware.js");
-//END OF IMPORT -----------------------
+//END OF IMPORT --------------------------------------------------
 //
 connectDB();
 const app = express(); // main thing
@@ -19,6 +20,7 @@ app.use(express.json()); //to accept json data
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/board", postRoutes);
+app.use("/api/covid-info", covidRoutes);
 //END OF ROUTES------------------------
 //deployment
 __dirname = path.resolve();
