@@ -36,6 +36,12 @@ function CovidGender() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
+    dispatch(getGenderData());
+  }, []);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(getGenderData(startDt, endDt));
+    setInfos(data);
     let tempItems = [];
     for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
       tempItems.push(
@@ -50,12 +56,6 @@ function CovidGender() {
       );
     }
     setItems(tempItems);
-  }, [infos]);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getGenderData(startDt, endDt));
-    setInfos(data);
-    console.log(data);
   };
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
