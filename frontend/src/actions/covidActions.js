@@ -5,6 +5,9 @@ import {
   COVIDGENDER_LIST_FAIL,
   COVIDGENDER_LIST_SUCCESS,
   COVIDGENDER_LIST_REQUEST,
+  COVIDTOTAL_LIST_FAIL,
+  COVIDTOTAL_LIST_SUCCESS,
+  COVIDTOTAL_LIST_REQUEST,
 } from "../constants/covidConstants";
 import axios from "axios";
 // import xml2js from "xml2js";
@@ -66,6 +69,37 @@ export const getGenderData =
           : error.message;
       dispatch({
         type: COVIDGENDER_LIST_FAIL,
+        payload: message,
+      });
+    }
+  };
+
+export const getTotalData =
+  (std = "20220425") =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: COVIDTOTAL_LIST_REQUEST,
+      });
+      const params = { date: std };
+      const { data } = await axios({
+        method: "get",
+        url: `/api/covid-info/total`,
+        params: params,
+      });
+      const initialObj = JSON.parse(data);
+      const infoObj = initialObj.response.body[0].items[0].item[0];
+      dispatch({
+        type: COVIDTOTAL_LIST_SUCCESS,
+        payload: infoObj,
+      });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({
+        type: COVIDTOTAL_LIST_FAIL,
         payload: message,
       });
     }

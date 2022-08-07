@@ -45,6 +45,9 @@ const Header = ({ setSearch }) => {
               <NavDropdown.Item href="/covid-gender">
                 연령별, 성별 발생현황
               </NavDropdown.Item>
+              <NavDropdown.Item href="/covid-total">
+                감염 현황 총괄 통계
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>

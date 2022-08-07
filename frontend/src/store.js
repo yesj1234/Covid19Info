@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   covidOccurReducer,
   covidGenderReducer,
+  covidTotalReducer,
 } from "./reducers/covidReducers";
 import {
   noteCreateReducer,
@@ -26,6 +27,7 @@ import {
 const reducer = combineReducers({
   covidGender: covidGenderReducer,
   covidOccur: covidOccurReducer,
+  covidTotal: covidTotalReducer,
   userLogin: userLoginReducer,
   userRegister: userRegisterReducer,
   userUpdate: userUpdateReducer,

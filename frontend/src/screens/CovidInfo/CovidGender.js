@@ -68,7 +68,6 @@ function CovidGender() {
                 <Form.Control
                   type="date"
                   onChange={(e) => {
-                    console.log(e.target.value.replaceAll("-", ""));
                     setStartDt(e.target.value.replaceAll("-", ""));
                   }}
                 />
