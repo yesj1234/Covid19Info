@@ -1,8 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const { getData } = require("../controllers/covidController");
+const {
+  getOccurData,
+  getGenderData,
+} = require("../controllers/covidController");
 
-router.route("/").get(getData);
+router.route("/occur").get(getOccurData);
+router.route("/gender").get(getGenderData);
 
 module.exports = router;

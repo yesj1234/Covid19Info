@@ -13,7 +13,8 @@ import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import Board from "./screens/Board/Board";
 import CreatePost from "./screens/SinglePost/CreatePost";
 import SinglePost from "./screens/SinglePost/SinglePost";
-import CovidInfo from "./screens/CovidInfo/CovidInfo";
+import CovidOccur from "./screens/CovidInfo/CovidOccur";
+import CovidGender from "./screens/CovidInfo/CovidGender";
 function App() {
   const [search, setSearch] = useState("");
 
@@ -32,7 +33,14 @@ function App() {
           <Route path="createPost" element={<CreatePost></CreatePost>}></Route>
           <Route path="/board" element={<Board></Board>}></Route>
           <Route path="/board/:id" element={<SinglePost></SinglePost>}></Route>
-          <Route path="/covid-info" element={<CovidInfo></CovidInfo>}></Route>
+          <Route
+            path="/covid-gender"
+            element={<CovidGender></CovidGender>}
+          ></Route>
+          <Route
+            path="/covid-occur"
+            element={<CovidOccur></CovidOccur>}
+          ></Route>
         </Routes>
       </main>
       <Footer />

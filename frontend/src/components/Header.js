@@ -38,7 +38,14 @@ const Header = ({ setSearch }) => {
             )}
           </Nav>
           <Nav>
-            <Nav.Link href="/covid-info">Covid Info</Nav.Link>
+            <NavDropdown title="Covid-info" id="collapsible-nav-dropdown">
+              <NavDropdown.Item href="/covid-occur">
+                시도발생현황
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/covid-gender">
+                연령별, 성별 발생현황
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
           <Nav>
             <Nav.Link href="/board">Board</Nav.Link>
