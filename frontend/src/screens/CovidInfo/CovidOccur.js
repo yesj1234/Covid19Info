@@ -12,7 +12,20 @@ function CovidOccur() {
   const { loading, error, data } = covidInfo;
   const [std, setStd] = useState("2021-12-15");
   const [gubun, setGubun] = useState("서울");
-
+  const section = [
+    "누적사망자수",
+    "누적확진자수",
+    "시도명",
+    "시도명 중국어",
+    "시도명 영어",
+    "전일대비확진자증감",
+    "누적격리해제수",
+    "격리중환자수",
+    "지역발생수",
+    "해외유입수",
+    "만명당발생율",
+    "기준일자",
+  ];
   useEffect(() => {
     dispatch(getOccurData());
   }, [dispatch]);
@@ -24,8 +37,6 @@ function CovidOccur() {
       <Container>
         <Row>
           <Col>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            {loading && <Loading />}
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="specificInfo">
                 <Form.Label>기준 일자</Form.Label>
@@ -50,13 +61,12 @@ function CovidOccur() {
           </Col>
         </Row>
         <Row>
-          <Table>
+          <Table responsive striped>
             <thead>
               <tr>
-                {data &&
-                  Object.keys(data).map((field, index) => {
-                    return <th key={field}>{field}</th>;
-                  })}
+                {section.map((each, index) => (
+                  <th key={Date.now() + index}>{each}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -68,6 +78,8 @@ function CovidOccur() {
               </tr>
             </tbody>
           </Table>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {loading && <Loading />}
         </Row>
       </Container>
     </MainScreen>

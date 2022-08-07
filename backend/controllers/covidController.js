@@ -18,7 +18,6 @@ const getOccurData = asyncHandler(async (req, res) => {
   const xmlResponse = await axios
     .get(url)
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .then((data) => {
@@ -27,7 +26,7 @@ const getOccurData = asyncHandler(async (req, res) => {
         .parseStringPromise(data)
         .then((result) => {
           const json = JSON.stringify(result);
-          console.log(json);
+
           res.json(json);
         })
         .catch((err) => console.log(err));

@@ -3,7 +3,15 @@ import MainScreen from "../../components/MainScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { getGenderData } from "../../actions/covidActions";
 import Loading from "../../components/Loading";
-import { Container, Row, Col, Form, Button, Table } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Button,
+  Table,
+  Pagination,
+} from "react-bootstrap";
 import ErrorMessage from "../../components/ErrorMessage";
 
 function CovidGender() {
@@ -12,8 +20,8 @@ function CovidGender() {
   const { loading, error, data } = covidInfo;
   const [startDt, setStartDt] = useState("20200315");
   const [endDt, setEndDt] = useState("20200315");
-  const [infos, setInfos] = useState([]);
-  const section = [
+  const [infos, setInfos] = useState([1]);
+  const columns = [
     "확진자",
     "확진률",
     "생성일",
@@ -24,10 +32,25 @@ function CovidGender() {
     "SEQ",
     "수정일",
   ];
-  //   useEffect(() => {
-  //     dispatch(getGenderData());
-  //     console.log(data);
-  //   }, [dispatch]);
+  const [active, setActive] = useState(1);
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    let tempItems = [];
+    for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
+      tempItems.push(
+        <Pagination.Item
+          key={number}
+          onClick={(e) => {
+            setActive(number);
+          }}
+        >
+          {number}
+        </Pagination.Item>
+      );
+    }
+    setItems(tempItems);
+  }, [infos]);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(getGenderData(startDt, endDt));
@@ -39,8 +62,6 @@ function CovidGender() {
       <Container>
         <Row>
           <Col>
-            {error && <ErrorMessage>{error}</ErrorMessage>}
-            {loading && <Loading />}
             <Form onSubmit={submitHandler}>
               <Form.Group controlId="specificInfo">
                 <Form.Label>검색할 생성일 범위의 시작</Form.Label>
@@ -67,14 +88,24 @@ function CovidGender() {
           <Table striped responsive>
             <thead>
               <tr>
-                {section.map((each, index) => (
+                {columns.map((each, index) => (
                   <th key={index}>{each}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {infos &&
-                infos.map((info) => (
+                active === 1 &&
+                infos.slice(0, 11).map((info) => (
+                  <tr>
+                    {Object.keys(info).map((field) => {
+                      return <td key={Date.now() + field}>{info[field]}</td>;
+                    })}
+                  </tr>
+                ))}
+              {infos &&
+                active >= 2 &&
+                infos.slice((active - 1) * 11, active * 11).map((info) => (
                   <tr>
                     {Object.keys(info).map((field) => {
                       return <td key={Date.now() + field}>{info[field]}</td>;
@@ -83,7 +114,10 @@ function CovidGender() {
                 ))}
             </tbody>
           </Table>
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+          {loading && <Loading />}
         </Row>
+        <Pagination>{items}</Pagination>
       </Container>
     </MainScreen>
   );
