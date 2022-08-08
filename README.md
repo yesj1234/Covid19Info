@@ -1,8 +1,8 @@
 # notezipper-clone
+#### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 의 클론코딩프로젝트입니다. 
+### 공공데이터 오픈api 받아오는 데이터 흐름 (express, react-redux)
 
-## 공공데이터 오픈api 받아오는 데이터 흐름 (express, react-redux)
-
-## react-redux에 대한 자세한 정보는 https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow 를 참고해주세요. 데이터 흐름에 대해 자세하게 나와있습니다.
+#### react-redux에 대한 자세한 정보는 https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow 를 참고해주세요. 데이터 흐름에 대해 자세하게 나와있습니다.
 
 ### CovidTotal.js
 
