@@ -35,7 +35,26 @@ function CovidGender() {
   const [active, setActive] = useState(1);
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   let tempItems = [];
+  //   for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
+  //     tempItems.push(
+  //       <Pagination.Item
+  //         key={number}
+  //         onClick={(e) => {
+  //           setActive(number);
+  //         }}
+  //       >
+  //         {number}
+  //       </Pagination.Item>
+  //     );
+  //   }
+  //   setItems(tempItems);
+  // }, [infos]);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(getGenderData(startDt, endDt));
+    setInfos(data);
     let tempItems = [];
     for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
       tempItems.push(
@@ -50,25 +69,6 @@ function CovidGender() {
       );
     }
     setItems(tempItems);
-  }, [infos]);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getGenderData(startDt, endDt));
-    setInfos(data);
-    // let tempItems = [];
-    // for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
-    //   tempItems.push(
-    //     <Pagination.Item
-    //       key={number}
-    //       onClick={(e) => {
-    //         setActive(number);
-    //       }}
-    //     >
-    //       {number}
-    //     </Pagination.Item>
-    //   );
-    // }
-    // setItems(tempItems);
   };
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
@@ -128,9 +128,8 @@ function CovidGender() {
           </Table>
           {error && <ErrorMessage>{error}</ErrorMessage>}
           {loading && <Loading />}
+          <Pagination>{items}</Pagination>
         </Row>
-
-        <Pagination>{items}</Pagination>
       </Container>
     </MainScreen>
   );
