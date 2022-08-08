@@ -26,10 +26,9 @@ function CovidOccur() {
     "만명당발생율",
     "기준일자",
   ];
-  useEffect(() => {
-    dispatch(getOccurData());
-  }, [dispatch]);
-  const submitHandler = () => {
+  // useEffect(() => {}, []);
+  const submitHandler = (e) => {
+    e.preventDefault();
     dispatch(getOccurData(std, gubun));
   };
   return (

@@ -35,9 +35,7 @@ function CovidGender() {
   const [active, setActive] = useState(1);
   const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    dispatch(getGenderData());
-  }, []);
+  // useEffect(() => {}, []);
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(getGenderData(startDt, endDt));
