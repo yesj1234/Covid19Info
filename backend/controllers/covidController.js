@@ -10,10 +10,9 @@ const axios = require("axios");
 // @access      Public
 const getOccurData = asyncHandler(async (req, res) => {
   console.log(req.query);
-  let { date, gubun } = req.query;
+  let { date } = req.query;
   date = encodeURI(date);
-  gubun = encodeURI(gubun);
-  const url = `http://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=${process.env.SERVICEKEY}&pageNo=1&numOfRows=500&apiType=xml&std_day=${date}&gubun=${gubun}`;
+  const url = `http://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=${process.env.SERVICEKEY}&pageNo=1&numOfRows=500&apiType=xml&std_day=${date}`;
 
   const xmlResponse = await axios
     .get(url)
@@ -26,7 +25,6 @@ const getOccurData = asyncHandler(async (req, res) => {
         .parseStringPromise(data)
         .then((result) => {
           const json = JSON.stringify(result);
-
           res.json(json);
         })
         .catch((err) => console.log(err));

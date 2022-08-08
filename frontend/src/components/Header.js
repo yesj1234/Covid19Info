@@ -22,7 +22,7 @@ const Header = ({ setSearch }) => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="primary" variant="dark">
       <Container>
-        <Navbar.Brand href="/">Note Zipper</Navbar.Brand>
+        <Navbar.Brand href="/">이겨내요 코로나</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
