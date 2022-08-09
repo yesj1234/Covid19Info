@@ -1,243 +1,420 @@
 # notezipper-clone
-#### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 의 클론코딩프로젝트입니다. 
-### 공공데이터 오픈api 받아오는 데이터 흐름 (express, react-redux)
+#### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 를 참고하여 진행한 프로젝트입니다. 
+CovidGender.js 파일은 공공데이터 포털의 open api를 활용하여 연령별, 성별 확진자, 확진률, 사망자, 사망률, 치명률을 nivo Bar 컴포넌트를 활용하여 바그래프 형태로 보여줍니다. 
+```javascript 
+import React, { useState, useEffect } from "react";
+import axios from "axios"; 
+import moment from "moment"; //시간을 계산하기 위한 모듈입니다. 
+import MainScreen from "../../components/MainScreen";
+import Loading from "../../components/Loading";
+import { Container, Carousel } from "react-bootstrap";
+import ErrorMessage from "../../components/ErrorMessage";
+import BarChart from "../../components/BarChart"; 
 
-#### react-redux에 대한 자세한 정보는 https://redux.js.org/tutorials/fundamentals/part-2-concepts-data-flow 를 참고해주세요. 데이터 흐름에 대해 자세하게 나와있습니다.
+function CovidGender() {
+  // @nivo/Bar 에서 제공하는 Bar컴포넌트가 필요로 하는 데이터의 형식입니다. 공공데이터 포털에서 받아온 데이터도 마찬가지로 다음과 같은 형식으로 가공해주어야 합니다. 
+  const [dt, setDt] = useState([
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+  ]);
+  const [loading, setLoading] = useState(false);
 
-### CovidTotal.js
-
-```javascript
-function CovidTotal() {
-  const dispatch = useDispatch();
-  const covidInfo = useSelector((state) => state.covidTotal);
-  const { loading, error, data } = covidInfo;
-  const [std, setStd] = useState("20200425");
-  const section = [
-    "누적확진률",
-    "누적검사수",
-    "누적검사완료수",
-    "치료중환자수",
-    "격리해제수",
-    "사망자수",
-    "확진자수",
-    "결과음성수",
-    "기준일자",
-    "기준시간",
-    "검사중수",
-  ];
-  // useEffect(() => {}, []);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getTotalData(std)); //dispatch함수에 covidActions에 정의해놓은 함수를 불러줍니다.
-  };
-  return (
-    <MainScreen title="코로나19 감염현황 총괄 통계">
-      <Container>
-        <Row>
-          <Col>
-            <Form onSubmit={submitHandler}>
-              <Form.Group controlId="specificInfo">
-                <Form.Label>기준 일자</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => {
-                    setStd(e.target.value.replaceAll("-", "")); //파라미터에 넣어줄 날짜형식입니다.
-                  }}
-                />
-              </Form.Group>
-
-              <Button type="submit">확인</Button>
-            </Form>
-          </Col>
-        </Row>
-        <Row>
-          <Table responsive striped>
-            <thead>
-              <tr>
-                {section.map((each, index) => (
-                  <th key={Date.now() + index}>{each}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {data &&
-                  Object.keys(data).map((field, index) => {
-                    return <th key={index}>{data[field]}</th>;
-                  })}
-              </tr>
-            </tbody>
-          </Table>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {loading && <Loading />}
-        </Row>
-      </Container>
-    </MainScreen>
-  );
-}
-
-export default CovidTotal;
-```
-
-```javascript
-export const getTotalData =
-  (
-    std = "20220425" //기본 날짜로 22년4월25일을 설정했습니다.
-  ) =>
-  async (dispatch) => {
-    try {
-      dispatch({
-        type: COVIDTOTAL_LIST_REQUEST,
+  useEffect(() => {
+    //데이터 가공함수입니다. 미리 기본값으로 저장해둔 dt를 복사 한 후 받아온 데이터들로 필드에 맞게 데이터를 바꾸어 주고 setDt함수로 새롭게 저장해줍니다. 
+    const dataHandler = (item) => {
+      let newData = [...dt];
+      item.forEach((each, index) => {
+        newData[index].gubun = each.gubun;
+        newData[index].confCase = each.confCase;
+        newData[index].confCaseRate = each.confCaseRate;
+        newData[index].criticalRate = each.criticalRate;
+        newData[index].death = each.death;
+        newData[index].deathRate = each.deathRate;
       });
-      const params = { date: std };
-      const { data } = await axios({
-        method: "get",
-        url: `/api/covid-info/total`, //해당 경로로 요청을 보내면 백엔드에서 데이터를 반환해줍니다.
-        params: params,
-      });
-      const initialObj = JSON.parse(data);
-      const infoObj = initialObj.response.body[0].items[0].item[0];
-      dispatch({
-        type: COVIDTOTAL_LIST_SUCCESS,
-        payload: infoObj,
-      });
-    } catch (error) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
-      dispatch({
-        type: COVIDTOTAL_LIST_FAIL,
-        payload: message,
-      });
-    }
-  };
-```
-
-server.js안에 api/covid-info로 요청이 올경우 covidRoutes로 연결되도록 해줍니다.
-
-```javascript
-app.use("/api/covid-info", covidRoutes);
-```
-
-covidRoute.js 안에서 /api/covid-info/total 경로로 요청이 올경우 getTotalData가 실행되도록 연결을 해줍니다. 함수는 따로 covidController.js 에서 관리해줍니다.
-
-```javascript
-const express = require("express");
-const router = express.Router();
-
-const {
-  getOccurData,
-  getGenderData,
-  getTotalData,
-} = require("../controllers/covidController");
-
-router.route("/occur").get(getOccurData);
-router.route("/gender").get(getGenderData);
-router.route("/total").get(getTotalData);
-module.exports = router;
-```
-
-covidController.js
-
-```javascript
-// @description Get datas from open api
-// @route       GET /api/covid-info/total
-// @access      Public
-const getTotalData = asyncHandler(async (req, res) => {
-  let { date } = req.query; //파라미터로 받아온 날짜를 req.query로 받아옵니다.
-  date = encodeURI(date); // url에 넣어주기 위해 encodeURI로 한번 감싸줍니다.
-  const url = `http://apis.data.go.kr/1352000/ODMS_COVID_02/callCovid02Api?serviceKey=${process.env.SERVICEKEY}&pageNo=1&numOfRows=500&apiType=xml&status_dt=${date}`; //요청 url입니다.
-
-  const xmlResponse = await axios //여기선 axios로 요청을 보내고 있지만 fetch함수를 써도 됩니다.
-    .get(url)
-    .then((res) => {
-      return res.data;
+      setDt(newData);
+      console.log(newData);
+    };
+    //useEffect함수의 dependency에 아무것도 넣어 주지 않으므로 화면이 전체적으로 렌더링 된 이후에 useEffect 내부에 넣어둔 코드들이 실행 될 것입니다. 위에 정의해둔 dataHandler함수를 사용해 axios모듈을 통해 서버로 요청을 보내면 서버에서 공공데이터 포털의 open api에 다시 요청을 보내 데이터를 받아와서 응답을 보내줍니다. 
+    const today = moment().subtract(1, "days").format("YYYYMMDD");
+    const params = { startCreateDt: today, endCreateDt: today };
+    setLoading(true);
+    axios({
+      method: "get",
+      url: `/api/covid-info/gender`,
+      params: params,
     })
-    .then((data) => {
-      const parser = new xml2js.Parser(); //받아온 데이터의 형식이 xml형식이기 때문에 json형식으로 바꿔주기 위해 xml2js 모듈을 사용해줬습니다.
-      parser
-        .parseStringPromise(data)
-        .then((result) => {
-          const json = JSON.stringify(result);
-          res.json(json);
-        })
-        .catch((err) => console.log(err));
-    });
-});
-```
+      .then((res) => {
+        //저한테 필요한 데이터는 res.data.item안에 들어있으므로 필요한 만큼만 받겠습니다. 
+        console.log(res.data.item);
+        return res.data.item;
+      })
+      .then((item) => {
+        dataHandler(item);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  //데이터간의 숫자 차이가 너무 커서 한 그래프 안에 다 보여줄 수 가 없습니다. 따라서 항목별로 따로따로 보여주기 위해 Carousel을 활용했습니다. 다음과 같이 정의해둔 key들은 BarChart의 인수로 들어갈 key들입니다. 
+  const confKeys = ["confCase"];
+  const confRateKeys = ["confCaseRate"];
+  const deathKeys = ["death"];
+  const deathRateKeys = ["deathRate"];
+  const criticalKeys = ["criticalRate"];
 
-이제 다시 프론트로 돌아와 받아온 데이터를 적절하게 배치해줍니다.
-
-```javascript
-function CovidTotal() {
-  const dispatch = useDispatch();
-  const covidInfo = useSelector((state) => state.covidTotal);
-  const { loading, error, data } = covidInfo; //data에 백엔드에서 전달해준 데이터가 저장됩니다.
-  const [std, setStd] = useState("20200425");
-  const section = [
-    "누적확진률",
-    "누적검사수",
-    "누적검사완료수",
-    "치료중환자수",
-    "격리해제수",
-    "사망자수",
-    "확진자수",
-    "결과음성수",
-    "기준일자",
-    "기준시간",
-    "검사중수",
-  ];
-  // useEffect(() => {}, []);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getTotalData(std));
-  };
   return (
-    <MainScreen title="코로나19 감염현황 총괄 통계">
-      <Container>
-        <Row>
-          <Col>
-            <Form onSubmit={submitHandler}>
-              <Form.Group controlId="specificInfo">
-                <Form.Label>기준 일자</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => {
-                    setStd(e.target.value.replaceAll("-", ""));
-                  }}
-                />
-              </Form.Group>
-
-              <Button type="submit">확인</Button>
-            </Form>
-          </Col>
-        </Row>
-        <Row>
-          <Table responsive striped>
-            <thead>
-              <tr>
-                {section.map((each, index) => (
-                  <th key={Date.now() + index}>{each}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                {data &&
-                  Object.keys(data).map((field, index) => {
-                    return <th key={index}>{data[field]}</th>; //key로 index를 넣는것은 지양해야 하지만 적절한 id를 만들방법을 찾지 못해 임시방편으로 넣어두었습니다.
-                  })}
-              </tr>
-            </tbody>
-          </Table>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {loading && <Loading />}
-        </Row>
-      </Container>
+    <MainScreen title="코로나19 연령별 성별 발생현황">
+      <Carousel fade interval={null}>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={confKeys}
+              title="연령별, 성별 확진자"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={confRateKeys}
+              title="연령별, 성별 확진률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={deathKeys}
+              title="연령별, 성별 사망자"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={deathRateKeys}
+              title="연령별, 성별 사망률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={criticalKeys}
+              title="연령별, 성별 치명률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+      </Carousel>
     </MainScreen>
   );
 }
 
-export default CovidTotal;
+export default CovidGender;
+
 ```
+
+
+CovidOccur.js파일도 CovidGender.js파일과 마찬가지로 공공데이터 포털에서 데이터를 받아오긴 하지만 Bar그래프 형식이 아닌 Pie 그래프 형식으로 데이터를 보여줍니다. 각 지역별로 확진자, 사망자, 전일대비 확진자 증감 을 한눈에 확인 할 수 있습니다. 
+
+```javascript
+import React, { useState, useEffect } from "react";
+import MainScreen from "../../components/MainScreen";
+import Loading from "../../components/Loading";
+// import { Container, Row, Col } from "react-bootstrap";
+// import ErrorMessage from "../../components/ErrorMessage";
+import PieChart from "../../components/PieChart";
+import axios from "axios";
+import moment from "moment";
+function CovidOccur() {
+  const [death, setDeath] = useState([]);
+  const [loc, setLoc] = useState([]);
+  const [inc, setInc] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    function generateNum() {
+      const rand1 = Math.ceil(Math.random() * 200);
+      return rand1;
+    }
+    //지역발생수 데이터 가공
+    //
+    const localDataHandler = (data) => {
+      const arrtemp2Box = [];
+      data.forEach((cur) => {
+        const gubun = cur.gubun[0];
+        const localOccCnt = cur.localOccCnt[0];
+        const obj = {
+          id: gubun,
+          label: gubun,
+          value: localOccCnt,
+          color: "hsl(100, 70%,50%)",
+        };
+        arrtemp2Box.push(obj);
+      });
+      //받아오는 데이터에 같은 Object가 중복으로 들어간 경우가 너무 많이 있어서 중복을 없애주기 위해 다음과 같은 uniqueArr을 정의해주었습니다. https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/ (중복없애기)
+      let uniqueArr = [
+        ...new Map(arrtemp2Box.map((item) => [item["id"], item])).values(),
+      ];
+      uniqueArr.map((each) => (each.color = `hsl(${generateNum()}, 70%,50%)`));
+      setLoc(uniqueArr);
+    };
+    //사망수 데이터 가공
+    const deathDataHandler = (data) => {
+      const arrtemp2Box = [];
+      data.forEach((cur) => {
+        const gubun = cur.gubun[0];
+        const deathCnt = cur.deathCnt[0];
+        const obj = {
+          id: gubun,
+          label: gubun,
+          value: deathCnt,
+          color: "hsl(100, 70%,50%)",
+        };
+        arrtemp2Box.push(obj);
+      });
+      let uniqueArr = [
+        ...new Map(arrtemp2Box.map((item) => [item["id"], item])).values(),
+      ];
+      uniqueArr.map((each) => (each.color = `hsl(${generateNum()}, 70%,50%)`));
+      setDeath(uniqueArr);
+    };
+    //전일대비 확진자 증감수
+    const incDataHandler = (data) => {
+      const arrtemp2Box = [];
+      data.forEach((cur) => {
+        const gubun = cur.gubun[0];
+        const incDec = cur.incDec[0];
+        const obj = {
+          id: gubun,
+          label: gubun,
+          value: incDec,
+          color: "hsl(100, 70%,50%)",
+        };
+        arrtemp2Box.push(obj);
+      });
+      let uniqueArr = [
+        ...new Map(arrtemp2Box.map((item) => [item["id"], item])).values(),
+      ];
+      uniqueArr.map((each) => (each.color = `hsl(${generateNum()}, 70%,50%)`));
+      setInc(uniqueArr);
+    };
+    const today = moment().subtract(1, "days").format("YYYY-MM-DD");
+    const params = { date: today };
+    setLoading(true);
+    axios({
+      method: "get",
+      url: `/api/covid-info/occur`,
+      params: params,
+    })
+      .then((res) => {
+        const initialObj = JSON.parse(res.data);
+        const infoObj = initialObj.response.body[0].items[0].item;
+        return infoObj;
+      })
+      .then((dt) => {
+        setLoading(false);
+        deathDataHandler(dt);
+        localDataHandler(dt);
+        incDataHandler(dt);
+      });
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <Loading></Loading>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <PieChart
+            data={death}
+            title={"누적사망자수"}
+            theme={{
+              background: "#FFBD33",
+              axis: {
+                fontSize: "14px",
+                tickColor: "#eee",
+                ticks: {
+                  line: {
+                    stroke: "#555555",
+                  },
+                  text: {
+                    fill: "#ffffff",
+                  },
+                },
+                legend: {
+                  text: {
+                    fill: "#aaaaaa",
+                  },
+                },
+              },
+              grid: {
+                line: {
+                  stroke: "#555555",
+                },
+              },
+            }}
+          ></PieChart>
+          <PieChart data={loc} title={"지역별 발생수"}></PieChart>
+          <PieChart data={inc} title={"전일대비확진자증감수"}></PieChart>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default CovidOccur;
+
+```
+
+
