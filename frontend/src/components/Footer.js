@@ -14,7 +14,9 @@ const Footer = () => {
     >
       <Container>
         <Row>
-          <Col className="text-center py-3">Copyright &copy; Note Zipper</Col>
+          <Col className="text-center py-3">
+            Copyright &copy; 이겨내요 코로나
+          </Col>
         </Row>
       </Container>
     </footer>

@@ -7,7 +7,7 @@ import PieChart from "../../components/PieChart";
 import axios from "axios";
 import moment from "moment";
 function CovidOccur() {
-  const [def, setDef] = useState([]);
+  const [death, setDeath] = useState([]);
   const [loc, setLoc] = useState([]);
   const [inc, setInc] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,8 +36,8 @@ function CovidOccur() {
       uniqueArr.map((each) => (each.color = `hsl(${generateNum()}, 70%,50%)`));
       setLoc(uniqueArr);
     };
-    //누적확진자수 데이터 가공
-    const defDataHandler = (data) => {
+    //사망수 데이터 가공
+    const deathDataHandler = (data) => {
       const arrtemp2Box = [];
       data.forEach((cur) => {
         const gubun = cur.gubun[0];
@@ -54,7 +54,7 @@ function CovidOccur() {
         ...new Map(arrtemp2Box.map((item) => [item["id"], item])).values(),
       ];
       uniqueArr.map((each) => (each.color = `hsl(${generateNum()}, 70%,50%)`));
-      setDef(uniqueArr);
+      setDeath(uniqueArr);
     };
     //전일대비 확진자 증감수
     const incDataHandler = (data) => {
@@ -91,7 +91,7 @@ function CovidOccur() {
       })
       .then((dt) => {
         setLoading(false);
-        defDataHandler(dt);
+        deathDataHandler(dt);
         localDataHandler(dt);
         incDataHandler(dt);
       });
@@ -107,7 +107,35 @@ function CovidOccur() {
             display: "flex",
           }}
         >
-          <PieChart data={def} title={"누적확진자수"}></PieChart>
+          <PieChart
+            data={death}
+            title={"누적사망자수"}
+            theme={{
+              background: "#FFBD33",
+              axis: {
+                fontSize: "14px",
+                tickColor: "#eee",
+                ticks: {
+                  line: {
+                    stroke: "#555555",
+                  },
+                  text: {
+                    fill: "#ffffff",
+                  },
+                },
+                legend: {
+                  text: {
+                    fill: "#aaaaaa",
+                  },
+                },
+              },
+              grid: {
+                line: {
+                  stroke: "#555555",
+                },
+              },
+            }}
+          ></PieChart>
           <PieChart data={loc} title={"지역별 발생수"}></PieChart>
           <PieChart data={inc} title={"전일대비확진자증감수"}></PieChart>
         </div>

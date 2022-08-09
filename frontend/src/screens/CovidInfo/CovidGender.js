@@ -1,136 +1,251 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
+import moment from "moment";
 import MainScreen from "../../components/MainScreen";
-import { useDispatch, useSelector } from "react-redux";
-import { getGenderData } from "../../actions/covidActions";
 import Loading from "../../components/Loading";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Table,
-  Pagination,
-} from "react-bootstrap";
+import { Container, Carousel } from "react-bootstrap";
 import ErrorMessage from "../../components/ErrorMessage";
+import BarChart from "../../components/BarChart";
 
 function CovidGender() {
-  const dispatch = useDispatch();
-  const covidInfo = useSelector((state) => state.covidGender);
-  const { loading, error, data } = covidInfo;
-  const [startDt, setStartDt] = useState("20200315");
-  const [endDt, setEndDt] = useState("20200315");
-  const [infos, setInfos] = useState([1]);
-  const columns = [
-    "확진자",
-    "확진률",
-    "생성일",
-    "치명률",
-    "사망자",
-    "사망률",
-    "구분",
-    "SEQ",
-    "수정일",
-  ];
-  const [active, setActive] = useState(1);
-  const [items, setItems] = useState([]);
+  const [dt, setDt] = useState([
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+    {
+      gubun: "AD",
+      confCase: 11,
+      confCaseColor: "hsl(172, 70%, 50%)",
+      confCaseRate: 125,
+      confCaseRateColor: "hsl(352, 70%, 50%)",
+      criticalRate: 53,
+      criticalRateColor: "hsl(222, 70%, 50%)",
+      death: 105,
+      deathColor: "hsl(315, 70%, 50%)",
+      deathRate: 167,
+      deathRateColor: "hsl(277, 70%, 50%)",
+    },
+  ]);
+  const [loading, setLoading] = useState(false);
 
-  // useEffect(() => {
-  //   let tempItems = [];
-  //   for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
-  //     tempItems.push(
-  //       <Pagination.Item
-  //         key={number}
-  //         onClick={(e) => {
-  //           setActive(number);
-  //         }}
-  //       >
-  //         {number}
-  //       </Pagination.Item>
-  //     );
-  //   }
-  //   setItems(tempItems);
-  // }, [infos]);
-  const submitHandler = (e) => {
-    e.preventDefault();
-    dispatch(getGenderData(startDt, endDt));
-    setInfos(data);
-    let tempItems = [];
-    for (let number = 1; number <= Math.ceil(infos.length / 11); number++) {
-      tempItems.push(
-        <Pagination.Item
-          key={number}
-          onClick={(e) => {
-            setActive(number);
-          }}
-        >
-          {number}
-        </Pagination.Item>
-      );
-    }
-    setItems(tempItems);
-  };
+  useEffect(() => {
+    //데이터 가공
+    const dataHandler = (item) => {
+      let newData = [...dt];
+      item.forEach((each, index) => {
+        newData[index].gubun = each.gubun;
+        newData[index].confCase = each.confCase;
+        newData[index].confCaseRate = each.confCaseRate;
+        newData[index].criticalRate = each.criticalRate;
+        newData[index].death = each.death;
+        newData[index].deathRate = each.deathRate;
+      });
+      setDt(newData);
+      console.log(newData);
+    };
+
+    const today = moment().subtract(1, "days").format("YYYYMMDD");
+    const params = { startCreateDt: today, endCreateDt: today };
+    setLoading(true);
+    axios({
+      method: "get",
+      url: `/api/covid-info/gender`,
+      params: params,
+    })
+      .then((res) => {
+        console.log(res.data.item);
+        return res.data.item;
+      })
+      .then((item) => {
+        dataHandler(item);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const confKeys = ["confCase"];
+  const confRateKeys = ["confCaseRate"];
+  const deathKeys = ["death"];
+  const deathRateKeys = ["deathRate"];
+  const criticalKeys = ["criticalRate"];
+
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
-      <Container>
-        <Row>
-          <Col>
-            <Form onSubmit={submitHandler}>
-              <Form.Group controlId="specificInfo">
-                <Form.Label>검색할 생성일 범위의 시작</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => {
-                    setStartDt(e.target.value.replaceAll("-", ""));
-                  }}
-                />
-                <Form.Label>검색할 생성일 범위의 종료</Form.Label>
-                <Form.Control
-                  type="date"
-                  onChange={(e) => {
-                    setEndDt(e.target.value.replaceAll("-", ""));
-                  }}
-                />
-              </Form.Group>
-              <Button type="submit">확인</Button>
-            </Form>
-          </Col>
-        </Row>
-        <Row>
-          <Table striped responsive>
-            <thead>
-              <tr>
-                {columns.map((each, index) => (
-                  <th key={index}>{each}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {infos &&
-                active === 1 &&
-                infos.slice(0, 11).map((info) => (
-                  <tr>
-                    {Object.keys(info).map((field) => {
-                      return <td key={Date.now() + field}>{info[field]}</td>;
-                    })}
-                  </tr>
-                ))}
-              {infos &&
-                active >= 2 &&
-                infos.slice((active - 1) * 11, active * 11).map((info) => (
-                  <tr>
-                    {Object.keys(info).map((field) => {
-                      return <td key={Date.now() + field}>{info[field]}</td>;
-                    })}
-                  </tr>
-                ))}
-            </tbody>
-          </Table>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          {loading && <Loading />}
-          <Pagination>{items}</Pagination>
-        </Row>
-      </Container>
+      <Carousel fade interval={null}>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={confKeys}
+              title="연령별, 성별 확진자"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={confRateKeys}
+              title="연령별, 성별 확진률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={deathKeys}
+              title="연령별, 성별 사망자"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={deathRateKeys}
+              title="연령별, 성별 사망률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+        <Carousel.Item>
+          <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
+            <BarChart
+              data={dt}
+              keys={criticalKeys}
+              title="연령별, 성별 치명률"
+            ></BarChart>
+          </Container>
+        </Carousel.Item>
+      </Carousel>
     </MainScreen>
   );
 }

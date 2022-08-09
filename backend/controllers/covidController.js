@@ -25,6 +25,7 @@ const getOccurData = asyncHandler(async (req, res) => {
         .parseStringPromise(data)
         .then((result) => {
           const json = JSON.stringify(result);
+
           res.json(json);
         })
         .catch((err) => console.log(err));

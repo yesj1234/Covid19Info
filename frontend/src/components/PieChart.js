@@ -8,7 +8,32 @@ import { ResponsivePie } from "@nivo/pie";
 function PieChart({
   data,
   title,
-  margin = { top: 30, right: 40, bottom: 30, left: 90 },
+  margin = { top: 30, right: 90, bottom: 30, left: 90 },
+  theme = {
+    background: "#FFBD33",
+    axis: {
+      fontSize: "14px",
+      tickColor: "#eee",
+      ticks: {
+        line: {
+          stroke: "#555555",
+        },
+        text: {
+          fill: "#ffffff",
+        },
+      },
+      legend: {
+        text: {
+          fill: "#aaaaaa",
+        },
+      },
+    },
+    grid: {
+      line: {
+        stroke: "#555555",
+      },
+    },
+  },
 }) {
   const styles = {
     root: {
@@ -39,31 +64,7 @@ function PieChart({
       fontSize: 24,
     },
   };
-  const theme = {
-    background: "#FFBD33",
-    axis: {
-      fontSize: "14px",
-      tickColor: "#eee",
-      ticks: {
-        line: {
-          stroke: "#555555",
-        },
-        text: {
-          fill: "#ffffff",
-        },
-      },
-      legend: {
-        text: {
-          fill: "#aaaaaa",
-        },
-      },
-    },
-    grid: {
-      line: {
-        stroke: "#555555",
-      },
-    },
-  };
+
   return (
     <div style={styles.root}>
       <ResponsivePie
