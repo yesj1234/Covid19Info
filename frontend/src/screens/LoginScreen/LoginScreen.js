@@ -17,7 +17,7 @@ function LoginScreen() {
   const { loading, error, userInfo } = userLogin;
   useEffect(() => {
     if (userInfo) {
-      navigate("/mynotes");
+      navigate("/");
     }
   }, [userInfo]);
   const submitHandler = (e) => {

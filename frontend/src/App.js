@@ -32,9 +32,6 @@ function App() {
             path="/register"
             element={<RegisterScreen></RegisterScreen>}
           />
-          <Route exact path="/mynotes" element={<MyNotes search={search} />} />
-          <Route exact path="/note/:id" element={<SingleNote></SingleNote>} />
-          <Route exact path="/createnote" element={<CreateNote></CreateNote>} />
           <Route
             exact
             path="/profile"

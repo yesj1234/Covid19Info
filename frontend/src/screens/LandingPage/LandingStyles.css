@@ -1,9 +1,12 @@
 .title {
   font-size: 95px;
+  color: "#80671b";
 }
 .subtitle {
   font-size: 25px;
   padding-top: 10px;
+  color: "#80671b";
+  font-weight: 900;
 }
 .intro-text {
   width: 100%;
@@ -13,7 +16,7 @@
   min-height: 93vh;
   display: flex;
   align-items: center;
-  background-image: url("../../background1.jpg");
+  background-image: url("../../maskBoy.png");
   background-position: center;
   background-size: cover;
 }
@@ -24,8 +27,9 @@
 }
 
 .landingbutton {
-  width: 200px;
-  height: 55px;
+  width: 100px;
+  height: 40px;
+  color: white;
 }
 
 @media only screen and (min-width: 1200px) {

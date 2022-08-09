@@ -10,11 +10,12 @@ const Footer = () => {
         bottom: 0,
         display: "flex",
         justifyContent: "center",
+        backgroundColor: "#ddd2ce",
       }}
     >
       <Container>
         <Row>
-          <Col className="text-center py-3">
+          <Col className="text-center py-3" style={{ color: "black" }}>
             Copyright &copy; 이겨내요 코로나
           </Col>
         </Row>
