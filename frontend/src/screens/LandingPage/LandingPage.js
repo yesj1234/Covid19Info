@@ -33,9 +33,6 @@ function LandingPage() {
                         </Dropdown.Toggle>
 
                         <Dropdown.Menu>
-                          <Dropdown.Item href="/covid-total">
-                            감염 현황 총괄 통계
-                          </Dropdown.Item>
                           <Dropdown.Item href="/covid-occur">
                             시도별 발생 현황
                           </Dropdown.Item>

@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import MainScreen from "../../components/MainScreen";
-import Loading from "../../components/Loading";
 import { Container, Carousel } from "react-bootstrap";
-import ErrorMessage from "../../components/ErrorMessage";
 import BarChart from "../../components/BarChart";
 
 function CovidGender() {
