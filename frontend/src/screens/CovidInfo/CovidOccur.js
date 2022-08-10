@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import MainScreen from "../../components/MainScreen";
+// import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 // import { Container, Row, Col } from "react-bootstrap";
 // import ErrorMessage from "../../components/ErrorMessage";

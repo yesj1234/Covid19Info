@@ -76,4 +76,22 @@ const getTotalData = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { getOccurData, getGenderData, getTotalData };
+// @description Get datas from open api
+// @route       GET /api/covid-info/hospital
+// @access      Public
+const getHospitalData = asyncHandler(async (req, res) => {
+  let { pageNo } = req.query;
+  pageNo = encodeURI(pageNo);
+  const url = `http://apis.data.go.kr/B551182/telCnslHospService/getTelCnslHospList?serviceKey=${process.env.SERVICEKEY}&pageNo=${pageNo}&numOfRows=24`;
+  const xmlResponse = await axios
+    .get(url)
+    .then((res) => {
+      return res.data.response.body.items;
+    })
+    .then((data) => {
+      res.json(data);
+    })
+    .catch((err) => console.log(err));
+});
+
+module.exports = { getOccurData, getGenderData, getTotalData, getHospitalData };

@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import {
   Container,
-  Form,
-  FormControl,
+  // Form,
+  // FormControl,
   Nav,
   Navbar,
   NavDropdown,
@@ -35,7 +35,7 @@ const Header = ({ setSearch }) => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="m-auto">
-            {userInfo && (
+            {/* {userInfo && (
               <Form inline>
                 <FormControl
                   type="text"
@@ -44,7 +44,7 @@ const Header = ({ setSearch }) => {
                   onChange={(e) => setSearch(e.target.value)}
                 />
               </Form>
-            )}
+            )} */}
           </Nav>
           <Nav>
             <NavDropdown title="Covid-info" id="collapsible-nav-dropdown">
@@ -56,6 +56,9 @@ const Header = ({ setSearch }) => {
               </NavDropdown.Item>
               <NavDropdown.Item href="/covid-total">
                 감염 현황 총괄 통계
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/covid-hospital">
+                전화상담 병의원 정보
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
