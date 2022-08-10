@@ -42,6 +42,9 @@ function LandingPage() {
                           <Dropdown.Item href="/covid-gender">
                             연령별, 성별 발생현황
                           </Dropdown.Item>
+                          <Dropdown.Item href="/covid-hospital">
+                            전화상담 병의원 정보
+                          </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
                     </Col>
