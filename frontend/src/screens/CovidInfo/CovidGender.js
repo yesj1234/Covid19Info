@@ -199,7 +199,7 @@ function CovidGender() {
 
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
-      <Carousel fade interval={null}>
+      <Carousel fade interval={null} style={{ overflow: "hidden" }}>
         <Carousel.Item>
           <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
             <BarChart

@@ -1,9 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
 
+.navBar {
+  /* border-style: none; */
+}
+
 .mainback {
   min-height: 93vh;
   display: flex;
   padding: 10px 0;
+  overflow: "hidden";
+  height: 100%;
 }
 .page {
   width: 100%;

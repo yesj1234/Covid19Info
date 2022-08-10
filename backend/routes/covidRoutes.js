@@ -10,6 +10,6 @@ const {
 
 router.route("/occur").get(getOccurData);
 router.route("/gender").get(getGenderData);
-router.route("/total").get(getTotalData);
+
 router.route("/hospital").get(getHospitalData);
 module.exports = router;

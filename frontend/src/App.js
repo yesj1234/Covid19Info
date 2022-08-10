@@ -9,22 +9,18 @@ import LandingPage from "./screens/LandingPage/LandingPage";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
 // import CreateNote from "./screens/SingleNote/CreateNote";
-import { useState } from "react";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import Board from "./screens/Board/Board";
 import CreatePost from "./screens/SinglePost/CreatePost";
 import SinglePost from "./screens/SinglePost/SinglePost";
 import CovidOccur from "./screens/CovidInfo/CovidOccur";
 import CovidGender from "./screens/CovidInfo/CovidGender";
-import CovidTotal from "./screens/CovidInfo/CovidTotal";
 import CovidHospital from "./screens/CovidInfo/CovidHospital";
 function App() {
-  // const [search, setSearch] = useState("");
-
   return (
     <BrowserRouter>
-      <Header />
       <main className="App">
+        <Header />
         <Routes>
           <Route exact path="/" element={<LandingPage></LandingPage>} />
           <Route exact path="/login" element={<LoginScreen></LoginScreen>} />
@@ -59,11 +55,7 @@ function App() {
             path="/covid-occur"
             element={<CovidOccur></CovidOccur>}
           ></Route>
-          <Route
-            exact
-            path="/covid-total"
-            element={<CovidTotal></CovidTotal>}
-          ></Route>
+
           <Route
             exact
             path="/covid-hospital"
@@ -71,8 +63,8 @@ function App() {
           ></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
+        <Footer />
       </main>
-      <Footer />
     </BrowserRouter>
   );
 }

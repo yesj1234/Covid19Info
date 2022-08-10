@@ -1,15 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const xml2js = require("xml2js");
 const axios = require("axios");
-// const fetch = (...args) =>
-//   import("node-fetch").then(({ default: fetch }) => fetch(...args));
-// const request = require("request");
 
 // @description Get datas from open api
 // @route       GET /api/covid-info/occur
 // @access      Public
 const getOccurData = asyncHandler(async (req, res) => {
-  console.log(req.query);
   let { date } = req.query;
   date = encodeURI(date);
   const url = `http://apis.data.go.kr/1352000/ODMS_COVID_04/callCovid04Api?serviceKey=${process.env.SERVICEKEY}&pageNo=1&numOfRows=500&apiType=xml&std_day=${date}`;
@@ -52,37 +48,12 @@ const getGenderData = asyncHandler(async (req, res) => {
 });
 
 // @description Get datas from open api
-// @route       GET /api/covid-info/total
-// @access      Public
-const getTotalData = asyncHandler(async (req, res) => {
-  let { date } = req.query;
-  date = encodeURI(date);
-  const url = `http://apis.data.go.kr/1352000/ODMS_COVID_02/callCovid02Api?serviceKey=${process.env.SERVICEKEY}&pageNo=1&numOfRows=500&apiType=xml&status_dt=${date}`;
-
-  const xmlResponse = await axios
-    .get(url)
-    .then((res) => {
-      return res.data;
-    })
-    .then((data) => {
-      const parser = new xml2js.Parser();
-      parser
-        .parseStringPromise(data)
-        .then((result) => {
-          const json = JSON.stringify(result);
-          res.json(json);
-        })
-        .catch((err) => console.log(err));
-    });
-});
-
-// @description Get datas from open api
 // @route       GET /api/covid-info/hospital
 // @access      Public
 const getHospitalData = asyncHandler(async (req, res) => {
   let { pageNo } = req.query;
   pageNo = encodeURI(pageNo);
-  const url = `http://apis.data.go.kr/B551182/telCnslHospService/getTelCnslHospList?serviceKey=${process.env.SERVICEKEY}&pageNo=${pageNo}&numOfRows=24`;
+  const url = `http://apis.data.go.kr/B551182/telCnslHospService/getTelCnslHospList?serviceKey=${process.env.SERVICEKEY}&pageNo=${pageNo}&numOfRows=44`;
   const xmlResponse = await axios
     .get(url)
     .then((res) => {

@@ -109,9 +109,18 @@ function CovidHospital() {
     );
   };
   return (
-    <Container style={{ height: "100vh", weight: "100vw" }}>
-      <Row style={{ height: "100%", weight: "100%", margin: "10px" }}>
-        <Map center={state.center} style={{ width: "50%", height: "95%" }}>
+    <Container style={{ height: "100%", weight: "100vw", overflow: "hidden" }}>
+      <Row
+        style={{
+          height: "100%",
+          weight: "100%",
+          margin: "10px",
+        }}
+      >
+        <Map
+          center={state.center}
+          style={{ width: "50%", height: "72vh", overflow: "hidden" }}
+        >
           {!state.isLoading && (
             <MapMarker position={state.center}>
               <div style={{ padding: "5px", color: "#000" }}>
