@@ -65,4 +65,4 @@ const getHospitalData = asyncHandler(async (req, res) => {
     .catch((err) => console.log(err));
 });
 
-module.exports = { getOccurData, getGenderData, getTotalData, getHospitalData };
+module.exports = { getOccurData, getGenderData, getHospitalData };

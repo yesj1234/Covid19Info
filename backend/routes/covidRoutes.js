@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   getOccurData,
   getGenderData,
-  getTotalData,
+
   getHospitalData,
 } = require("../controllers/covidController");
 
