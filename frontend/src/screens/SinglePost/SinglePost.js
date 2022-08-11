@@ -50,9 +50,9 @@ function SinglePost() {
     navigate("/board");
   };
   return (
-    <MainScreen title="Edit Post">
+    <MainScreen title="메모 수정하기">
       <Card>
-        <Card.Header>Edit your Post</Card.Header>
+        <Card.Header>메모 수정</Card.Header>
         <Card.Body>
           <Form onSubmit={updateHandler}>
             {loadingDelete && <Loading></Loading>}
@@ -62,7 +62,7 @@ function SinglePost() {
             )}
 
             <Form.Group controlId="content">
-              <Form.Label>Content</Form.Label>
+              <Form.Label>메모</Form.Label>
               <Form.Control
                 as="textarea"
                 placeholder="Enter the content"
@@ -71,30 +71,30 @@ function SinglePost() {
                 onChange={(e) => setContent(e.target.value)}
               />
             </Form.Group>
-            {content && (
+            {/* {content && (
               <Card>
                 <Card.Header>Note Preview</Card.Header>
                 <Card.Body>
                   <ReactMarkdown>{content}</ReactMarkdown>
                 </Card.Body>
               </Card>
-            )}
+            )} */}
 
             {loading && <Loading size={50} />}
-            <Button variant="primary" type="submit">
-              Update Post
+            <Button variant="primary" type="submit" style={{ marginTop: 10 }}>
+              수정
             </Button>
-            <Button
+            <Button style={{ marginTop: 10}}
               className="mx-2"
               variant="danger"
               onClick={() => deleteHandler(id)}
             >
-              Delete
+              삭제
             </Button>
           </Form>
         </Card.Body>
         <Card.Footer className="text-muted">
-          Updated on - {date.substring(0, 10)}
+          수정일자 - {date.substring(0, 10)}
         </Card.Footer>
       </Card>
     </MainScreen>
