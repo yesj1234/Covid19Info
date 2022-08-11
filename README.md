@@ -1,18 +1,21 @@
 # notezipper-clone
-#### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 를 참고하여 진행한 프로젝트입니다. 
-CovidGender.js 파일은 공공데이터 포털의 open api를 활용하여 연령별, 성별 확진자, 확진률, 사망자, 사망률, 치명률을 nivo Bar 컴포넌트를 활용하여 바그래프 형태로 보여줍니다. 
-```javascript 
+
+#### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 를 참고하여 진행한 프로젝트입니다.
+
+CovidGender.js 파일은 공공데이터 포털의 open api를 활용하여 연령별, 성별 확진자, 확진률, 사망자, 사망률, 치명률을 nivo Bar 컴포넌트를 활용하여 바그래프 형태로 보여줍니다.
+
+```javascript
 import React, { useState, useEffect } from "react";
-import axios from "axios"; 
-import moment from "moment"; //시간을 계산하기 위한 모듈입니다. 
+import axios from "axios";
+import moment from "moment"; //시간을 계산하기 위한 모듈입니다.
 import MainScreen from "../../components/MainScreen";
 import Loading from "../../components/Loading";
 import { Container, Carousel } from "react-bootstrap";
 import ErrorMessage from "../../components/ErrorMessage";
-import BarChart from "../../components/BarChart"; 
+import BarChart from "../../components/BarChart";
 
 function CovidGender() {
-  // @nivo/Bar 에서 제공하는 Bar컴포넌트가 필요로 하는 데이터의 형식입니다. 공공데이터 포털에서 받아온 데이터도 마찬가지로 다음과 같은 형식으로 가공해주어야 합니다. 
+  // @nivo/Bar 에서 제공하는 Bar컴포넌트가 필요로 하는 데이터의 형식입니다. 공공데이터 포털에서 받아온 데이터도 마찬가지로 다음과 같은 형식으로 가공해주어야 합니다.
   const [dt, setDt] = useState([
     {
       gubun: "AD",
@@ -161,7 +164,7 @@ function CovidGender() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    //데이터 가공함수입니다. 미리 기본값으로 저장해둔 dt를 복사 한 후 받아온 데이터들로 필드에 맞게 데이터를 바꾸어 주고 setDt함수로 새롭게 저장해줍니다. 
+    //데이터 가공함수입니다. 미리 기본값으로 저장해둔 dt를 복사 한 후 받아온 데이터들로 필드에 맞게 데이터를 바꾸어 주고 setDt함수로 새롭게 저장해줍니다.
     const dataHandler = (item) => {
       let newData = [...dt];
       item.forEach((each, index) => {
@@ -175,7 +178,7 @@ function CovidGender() {
       setDt(newData);
       console.log(newData);
     };
-    //useEffect함수의 dependency에 아무것도 넣어 주지 않으므로 화면이 전체적으로 렌더링 된 이후에 useEffect 내부에 넣어둔 코드들이 실행 될 것입니다. 위에 정의해둔 dataHandler함수를 사용해 axios모듈을 통해 서버로 요청을 보내면 서버에서 공공데이터 포털의 open api에 다시 요청을 보내 데이터를 받아와서 응답을 보내줍니다. 
+    //useEffect함수의 dependency에 아무것도 넣어 주지 않으므로 화면이 전체적으로 렌더링 된 이후에 useEffect 내부에 넣어둔 코드들이 실행 될 것입니다. 위에 정의해둔 dataHandler함수를 사용해 axios모듈을 통해 서버로 요청을 보내면 서버에서 공공데이터 포털의 open api에 다시 요청을 보내 데이터를 받아와서 응답을 보내줍니다.
     const today = moment().subtract(1, "days").format("YYYYMMDD");
     const params = { startCreateDt: today, endCreateDt: today };
     setLoading(true);
@@ -185,7 +188,7 @@ function CovidGender() {
       params: params,
     })
       .then((res) => {
-        //저한테 필요한 데이터는 res.data.item안에 들어있으므로 필요한 만큼만 받겠습니다. 
+        //저한테 필요한 데이터는 res.data.item안에 들어있으므로 필요한 만큼만 받겠습니다.
         console.log(res.data.item);
         return res.data.item;
       })
@@ -197,7 +200,7 @@ function CovidGender() {
         console.log(err);
       });
   }, []);
-  //데이터간의 숫자 차이가 너무 커서 한 그래프 안에 다 보여줄 수 가 없습니다. 따라서 항목별로 따로따로 보여주기 위해 Carousel을 활용했습니다. 다음과 같이 정의해둔 key들은 BarChart의 인수로 들어갈 key들입니다. 
+  //데이터간의 숫자 차이가 너무 커서 한 그래프 안에 다 보여줄 수 가 없습니다. 따라서 항목별로 따로따로 보여주기 위해 Carousel을 활용했습니다. 다음과 같이 정의해둔 key들은 BarChart의 인수로 들어갈 key들입니다.
   const confKeys = ["confCase"];
   const confRateKeys = ["confCaseRate"];
   const deathKeys = ["death"];
@@ -258,11 +261,9 @@ function CovidGender() {
 }
 
 export default CovidGender;
-
 ```
 
-
-CovidOccur.js파일도 CovidGender.js파일과 마찬가지로 공공데이터 포털에서 데이터를 받아오긴 하지만 Bar그래프 형식이 아닌 Pie 그래프 형식으로 데이터를 보여줍니다. 각 지역별로 확진자, 사망자, 전일대비 확진자 증감 을 한눈에 확인 할 수 있습니다. 
+CovidOccur.js파일도 CovidGender.js파일과 마찬가지로 공공데이터 포털에서 데이터를 받아오긴 하지만 Bar그래프 형식이 아닌 Pie 그래프 형식으로 데이터를 보여줍니다. 각 지역별로 확진자, 사망자, 전일대비 확진자 증감 을 한눈에 확인 할 수 있습니다.
 
 ```javascript
 import React, { useState, useEffect } from "react";
@@ -414,7 +415,4 @@ function CovidOccur() {
 }
 
 export default CovidOccur;
-
 ```
-
-

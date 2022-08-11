@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import moment from "moment";
 import MainScreen from "../../components/MainScreen";
-import Loading from "../../components/Loading";
 import { Container, Carousel } from "react-bootstrap";
-import ErrorMessage from "../../components/ErrorMessage";
 import BarChart from "../../components/BarChart";
-
+import "./style.css";
 function CovidGender() {
   const [dt, setDt] = useState([
     {
@@ -199,7 +197,7 @@ function CovidGender() {
 
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
-      <Carousel fade interval={null}>
+      <Carousel fade interval={null} style={{ overflow: "hidden" }}>
         <Carousel.Item>
           <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
             <BarChart

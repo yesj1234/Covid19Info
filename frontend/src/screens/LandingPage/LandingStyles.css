@@ -1,16 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap");
 .title {
-  font-size: 95px;
+  font-size: 100px;
   color: "#80671b";
+  font-weight: 400;
 }
 .subtitle {
   font-size: 25px;
   padding-top: 10px;
   color: "#80671b";
-  font-weight: 900;
+  font-weight: 100;
 }
 .intro-text {
   width: 100%;
   text-align: center;
+  font-family: "Black Han Sans", sans-serif;
 }
 .main {
   min-height: 93vh;
@@ -32,6 +36,14 @@
   color: white;
 }
 
+#dropdown-basic {
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+}
+.covid-dropdown-menu {
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+}
 @media only screen and (min-width: 1200px) {
   .buttonContainer {
     padding: 0 200px;

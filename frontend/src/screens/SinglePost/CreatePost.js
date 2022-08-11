@@ -33,7 +33,7 @@ function CreatePost() {
   return (
     <MainScreen title="함께 이겨내요">
       <Card>
-        <Card.Header>코로나를 이겨낼 수 있는 팁이 있다면 공유해주세요.</Card.Header>
+        <Card.Header>간단한 정보만 게시해주세요. (300자이하)</Card.Header>
         <Card.Body >
           <Form onSubmit={submitHandler}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
@@ -47,16 +47,9 @@ function CreatePost() {
                 placeholder="내용을 작성해주세요."
                 rows={5}
                 onChange={(e) => setContent(e.target.value)}
+                maxLength="300"
               />
             </Form.Group>
-            {/* {content && (
-              <Card>
-                <Card.Header>Note Preview</Card.Header>
-                <Card.Body>
-                  <ReactMarkdown>{content}</ReactMarkdown>
-                </Card.Body>
-              </Card>
-            )} */}
 
             {loading && <Loading size={50} />}
             <Button type="submit" variant="outline-primary" style={{ marginTop: 10 }}>

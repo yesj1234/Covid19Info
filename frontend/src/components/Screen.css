@@ -1,9 +1,15 @@
-@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+.navBar {
+  /* border-style: none; */
+  font-family: "Black Han Sans", sans-serif;
+}
 
 .mainback {
   min-height: 93vh;
   display: flex;
   padding: 10px 0;
+  overflow: "hidden";
+  height: 100%;
 }
 .page {
   width: 100%;
@@ -12,7 +18,7 @@
 .heading {
   font-size: 60px;
   /* font-family: "Ubuntu", sans-serif; */
-  font-family: "Work Sans", sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   padding: 5px 10px;
 }
 

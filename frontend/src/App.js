@@ -4,26 +4,23 @@ import Footer from "./components/Footer";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
 import LandingPage from "./screens/LandingPage/LandingPage";
-import MyNotes from "./screens/MyNotes/MyNotes";
-import SingleNote from "./screens/SingleNote/SingleNote";
+// import MyNotes from "./screens/MyNotes/MyNotes";
+// import SingleNote from "./screens/SingleNote/SingleNote";
 import LoginScreen from "./screens/LoginScreen/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen/RegisterScreen";
-import CreateNote from "./screens/SingleNote/CreateNote";
-import { useState } from "react";
+// import CreateNote from "./screens/SingleNote/CreateNote";
 import ProfileScreen from "./screens/ProfileScreen/ProfileScreen";
 import Board from "./screens/Board/Board";
 import CreatePost from "./screens/SinglePost/CreatePost";
 import SinglePost from "./screens/SinglePost/SinglePost";
 import CovidOccur from "./screens/CovidInfo/CovidOccur";
 import CovidGender from "./screens/CovidInfo/CovidGender";
-import CovidTotal from "./screens/CovidInfo/CovidTotal";
+import CovidHospital from "./screens/CovidInfo/CovidHospital";
 function App() {
-  const [search, setSearch] = useState("");
-
   return (
     <BrowserRouter>
-      <Header setSearch={(s) => setSearch(s)} />
       <main className="App">
+        <Header />
         <Routes>
           <Route exact path="/" element={<LandingPage></LandingPage>} />
           <Route exact path="/login" element={<LoginScreen></LoginScreen>} />
@@ -58,15 +55,16 @@ function App() {
             path="/covid-occur"
             element={<CovidOccur></CovidOccur>}
           ></Route>
+
           <Route
             exact
-            path="/covid-total"
-            element={<CovidTotal></CovidTotal>}
+            path="/covid-hospital"
+            element={<CovidHospital></CovidHospital>}
           ></Route>
           <Route path="*" element={<NotFound></NotFound>}></Route>
         </Routes>
+        <Footer />
       </main>
-      <Footer />
     </BrowserRouter>
   );
 }

@@ -42,6 +42,7 @@ function PieChart({
       position: "relative",
       width: 600,
       height: 600,
+      overflow: "hidden",
     },
     overlay: {
       position: "absolute",
