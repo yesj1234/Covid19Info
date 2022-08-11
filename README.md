@@ -77,7 +77,7 @@ function App() {
 }
 ```
 
-- Frontend>src>screens>CovidInfo>CovidHospital.js
+- Frontend>src>screens>LandingPage>LandingPage.js
 제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
 
 ```javascript
