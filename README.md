@@ -9,6 +9,8 @@
 - 프로젝트 배포 : 헤로쿠(https://notezipper-clone.herokuapp.com/)
 - 사용 스택 : React, Express, MongoDB, Node.js
 - dependency : axios, bcryptjs, colors, dotenv, express, express-async-handler, jsonwebtoken, mongoose, node-fetch, xml2js 등
+- 소요 기간 : 3주 
+- 팀원 : 고하나, 김지영, 정하연, 양승준 
 - 디렉토리 구조 :
   - frontend
   ![frontend](https://user-images.githubusercontent.com/86505279/184131614-1274ca6e-f4d8-439f-ba0c-dedd70f9c8a3.png)
