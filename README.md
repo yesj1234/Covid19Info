@@ -77,7 +77,8 @@ function App() {
 }
 ```
 
-- 제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
+- Frontend>src>screens>CovidInfo>CovidHospital.js
+제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
 
 ```javascript
 function LandingPage() {
@@ -188,7 +189,7 @@ export default LandingPage;
 ```
 
 - Frontend>src>screens>CovidInfo>CovidHospital.js
-  공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
+ 공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
 
 ```javascript
 function CovidHospital() {
