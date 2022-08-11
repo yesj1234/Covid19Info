@@ -11,7 +11,7 @@ import { Map, MapMarker, useMap } from "react-kakao-maps-sdk";
 import axios from "axios";
 import Loading from "../../components/Loading";
 import MainScreen from "../../components/MainScreen";
-
+import "./style.css";
 function CovidHospital() {
   const [state, setState] = useState({
     center: {
@@ -148,7 +148,7 @@ function CovidHospital() {
               ))}
           </Map>
           <Col>
-            <Container>
+            <Container className="hospital-container">
               {loading ? (
                 <Loading></Loading>
               ) : (

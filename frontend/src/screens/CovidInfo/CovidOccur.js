@@ -6,6 +6,7 @@ import Loading from "../../components/Loading";
 import PieChart from "../../components/PieChart";
 import axios from "axios";
 import moment from "moment";
+import "./style.css";
 function CovidOccur() {
   const [death, setDeath] = useState([]);
   const [loc, setLoc] = useState([]);

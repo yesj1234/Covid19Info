@@ -33,11 +33,10 @@ function CreatePost() {
   return (
     <MainScreen title="Create a Post">
       <Card>
-        <Card.Header>Create a new Post</Card.Header>
+        <Card.Header>간단한 정보만 게시해주세요. (300자이하)</Card.Header>
         <Card.Body>
           <Form onSubmit={submitHandler}>
             {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
-
             <Form.Group controlId="content">
               <Form.Label>Content</Form.Label>
               <Form.Control
@@ -46,6 +45,7 @@ function CreatePost() {
                 placeholder="Enter the content"
                 rows={4}
                 onChange={(e) => setContent(e.target.value)}
+                maxLength="300"
               />
             </Form.Group>
             {content && (

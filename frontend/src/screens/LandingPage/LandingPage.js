@@ -16,7 +16,7 @@ function LandingPage() {
             <div>
               <h1 className="title">이겨내요 코로나</h1>
               <p className="subtitle">
-                코로나 현황에 대한 정보와 정보 나눔 게시판 기능을 <br />
+                코로나 현황에 대한 정보와 간단한 정보 나눔 게시판 기능을 <br />
                 갖춘 프로젝트 사이트입니다
               </p>
             </div>
@@ -32,7 +32,7 @@ function LandingPage() {
                           Covid Info
                         </Dropdown.Toggle>
 
-                        <Dropdown.Menu>
+                        <Dropdown.Menu className="covid-dropdown-menu">
                           <Dropdown.Item href="/covid-occur">
                             시도별 발생 현황
                           </Dropdown.Item>
@@ -49,7 +49,7 @@ function LandingPage() {
                       <Link to="/board">
                         <Button
                           variant="outline-primary"
-                          size="sm"
+                          size="lg"
                           className="landingbutton"
                         >
                           게시판
@@ -68,7 +68,7 @@ function LandingPage() {
                         Covid Info
                       </Dropdown.Toggle>
 
-                      <Dropdown.Menu>
+                      <Dropdown.Menu className="covid-dropdown-menu">
                         <Dropdown.Item href="/covid-total">
                           감염 현황 총괄 통계
                         </Dropdown.Item>

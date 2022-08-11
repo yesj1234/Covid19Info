@@ -4,7 +4,7 @@ import moment from "moment";
 import MainScreen from "../../components/MainScreen";
 import { Container, Carousel } from "react-bootstrap";
 import BarChart from "../../components/BarChart";
-
+import "./style.css";
 function CovidGender() {
   const [dt, setDt] = useState([
     {

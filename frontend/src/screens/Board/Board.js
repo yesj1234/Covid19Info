@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
 import MainScreen from "../../components/MainScreen";
-import { Card, Button } from "react-bootstrap";
+import { Card, Button, Container, ListGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePostAction, listPosts } from "../../actions/boardActions";
 import Loading from "../../components/Loading";
@@ -35,16 +35,16 @@ function Board() {
   }, [dispatch, userInfo, successDelete, successCreate, successUpdate]);
 
   const deleteHandler = (id) => {
-    if (window.confirm("Are you sure?")) {
+    if (window.confirm("정말 삭제 하시겠습니까?")) {
       dispatch(deletePostAction(id));
     }
   };
   return (
-    <MainScreen title="Welcome to The Board" style={{ overFlow: "hidden" }}>
+    <MainScreen title="정보 나눔 게시판" style={{ overFlow: "hidden" }}>
       {console.log(posts)}
       <Link to="/createPost">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
-          Create new Draggable Post
+          새로운 정보 게시하기
         </Button>
       </Link>
       {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
@@ -53,24 +53,40 @@ function Board() {
       )}
       {loading && <Loading />}
       {loadingDelete && <Loading />}
-      {posts &&
-        posts.map((post) => (
-          <Draggable key={post._id}>
-            <Card style={{ width: "30%" }}>
-              <Card.Body>
-                <Card.Text>{post.content}</Card.Text>
-                <Button href={`/board/${post._id}`}>Edit</Button>
-                <Button
-                  variant="danger"
-                  className="mx-2"
-                  onClick={() => deleteHandler(post._id)}
-                >
-                  Delete
-                </Button>
-              </Card.Body>
-            </Card>
-          </Draggable>
-        ))}
+      {posts && (
+        <Container style={{ display: "flex" }}>
+          {posts.map((post) => (
+            <Draggable>
+              <Card
+                key={post._id}
+                style={{
+                  width: "30%",
+                  maxHeight: "300px",
+                  minHeight: "150px",
+                  overflow: "auto",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "no-wrap",
+                }}
+              >
+                <Card.Body>
+                  <Card.Text>{post.content}</Card.Text>
+                  <Button href={`/board/${post._id}`} size="sm">
+                    Edit
+                  </Button>
+                  <Button
+                    variant="danger"
+                    className="mx-2"
+                    size="sm"
+                    onClick={() => deleteHandler(post._id)}
+                  >
+                    Delete
+                  </Button>
+                </Card.Body>
+              </Card>
+            </Draggable>
+          ))}
+        </Container>
+      )}
     </MainScreen>
   );
 }

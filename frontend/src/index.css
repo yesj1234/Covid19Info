@@ -1,19 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300&family=Bebas+Neue&family=Black+Han+Sans&family=Smooch+Sans:wght@100;200;300;500;600;700&display=swap");
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI",
-    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-    "Helvetica Neue", sans-serif;
+  font-family: "Black Han Sans", sans-serif, -apple-system, BlinkMacSystemFont,
+    "Work Sans", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: "Black Han Sans", sans-serif, source-code-pro, Menlo, Monaco,
+    Consolas, "Courier New", monospace;
 }
