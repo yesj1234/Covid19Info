@@ -1,28 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500&display=swap");
+
 .title {
+  font-family: "Black Han Sans", sans-serif;
   font-size: 100px;
-  color: "#80671b";
-  font-weight: 400;
+  color: #5160b5;
+}
+.subtteam {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 24px;
+  color: #3d3a8a;
+  font-weight: 700;
 }
 .subtitle {
-  font-size: 25px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 22px;
   padding-top: 10px;
-  color: "#80671b";
-  font-weight: 100;
+  color: #3d3a8a;
+  font-weight: 400;
 }
 .intro-text {
   width: 100%;
   text-align: center;
-  font-family: "Black Han Sans", sans-serif;
 }
 .main {
-  min-height: 93vh;
+  background-color: #b5ccea;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  background-image: url("../../maskBoy.png");
   background-position: center;
   background-size: cover;
+}
+.containerBack {
+  background-color: #b5ccea;
+  height: 670px;
+  display: flex;
+  align-items: center;
+  /* background-image: url("../../back.png"); */
+  margin-left: 15%;
+  margin-right: 15%;
+  background-position: center;
+  background-size: 100% 670px;
 }
 .buttonContainer {
   margin-top: 50px;
@@ -31,19 +48,21 @@
 }
 
 .landingbutton {
-  width: 100px;
-  height: 40px;
+  width: 120px;
+  height: 35px;
+  font-size: 14px;
+  background-color: #3d3a8a;
+  border: none;
   color: white;
 }
-
+.landingbutton:hover {
+  background-color: #ddd2ce;
+  color: #3d3a8a;
+}
 #dropdown-basic {
-  font-family: "Black Han Sans", sans-serif;
-  font-weight: 400;
+  font-size: 14px;
 }
-.covid-dropdown-menu {
-  font-family: "Black Han Sans", sans-serif;
-  font-weight: 400;
-}
+
 @media only screen and (min-width: 1200px) {
   .buttonContainer {
     padding: 0 200px;
@@ -53,12 +72,19 @@
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
   .title {
-    font-size: 60px;
+    font-size: 50px;
   }
   .landingbutton {
     width: 150px;
     height: 50px;
+  }
+  .subtitle {
+    font-size: 15px;
+  }
+  .landingbutton {
+    width: 80px;
+    font-size: 10px;
   }
 }

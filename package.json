@@ -1,7 +1,7 @@
 {
   "name": "git-public-api-practice-ver2",
   "version": "1.0.0",
-  "description": "NoteZipper Clone",
+  "description": "이겨내요 코로나",
   "main": "server.js",
   "engines": {
     "node": "16.x"

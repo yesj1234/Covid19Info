@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Draggable from "react-draggable";
 import MainScreen from "../../components/MainScreen";
-import { Card, Button, Container, ListGroup } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePostAction, listPosts } from "../../actions/boardActions";
 import Loading from "../../components/Loading";
@@ -40,9 +40,10 @@ function Board() {
     }
   };
   return (
-
     <MainScreen title="정보 나눔 게시판" style={{ overFlow: "hidden" }}>
-      <p style={{ marginLeft: 10, color: "gray" }}>코로나를 이겨낼 수 있는 팁이 있다면 공유해주세요.</p>
+      <p style={{ marginLeft: 10, color: "gray" }}>
+        코로나를 이겨낼 수 있는 팁이 있다면 공유해주세요.
+      </p>
       {console.log(posts)}
       <Link to="/createPost">
         <Button style={{ marginLeft: 10, marginBottom: 6 }} size="lg">
@@ -56,14 +57,28 @@ function Board() {
       {loading && <Loading />}
       {loadingDelete && <Loading />}
 
-        <div style={{ display: "flex", flexWrap:"wrap"}}>
-          {posts &&
-            posts.map((post) => (
-              <Draggable  key={post._id}>
-              <Card style={{ display:"flex", width: "25%", marginRight:20, marginTop: 20, backgroundColor: "beige", border: "none", borderRadius: 10 }}>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {posts &&
+          posts.map((post) => (
+            <Draggable key={post._id}>
+              <Card
+                style={{
+                  display: "flex",
+                  width: "23%",
+                  marginRight: 20,
+                  marginTop: 20,
+                  backgroundColor: "beige",
+                  border: "none",
+                  borderRadius: 10,
+                }}
+              >
                 <Card.Body>
-                  <Card.Text  style={{ fontSize:17, height:150 }}>{post.content}</Card.Text>
-                  <Button variant="light" href={`/board/${post._id}`} >수정</Button>
+                  <Card.Text style={{ fontSize: 17, height: 150 }}>
+                    {post.content}
+                  </Card.Text>
+                  <Button variant="light" href={`/board/${post._id}`}>
+                    수정
+                  </Button>
                   <Button
                     variant="light"
                     className="mx-2"
@@ -74,8 +89,8 @@ function Board() {
                 </Card.Body>
               </Card>
             </Draggable>
-          ))}        
-        </div>
+          ))}
+      </div>
     </MainScreen>
   );
 }

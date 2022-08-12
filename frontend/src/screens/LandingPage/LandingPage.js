@@ -10,14 +10,16 @@ function LandingPage() {
 
   return (
     <div className="main">
-      <Container>
+      <Container className="containerBack">
+        <div className="virus"></div>
         <Row className="justify-content-md-center">
           <div className="intro-text">
             <div>
+              <div className="subtteam">SW엔지니어트랙 4조 프로젝트</div>
               <h1 className="title">이겨내요 코로나</h1>
               <p className="subtitle">
-                코로나 현황에 대한 정보와 간단한 정보 나눔 게시판 기능을 <br />
-                갖춘 프로젝트 사이트입니다
+                코로나 현황에 대한 정보와 정보 나눔 게시판 기능을 갖춘 프로젝트
+                사이트입니다
               </p>
             </div>
           </div>
@@ -29,18 +31,20 @@ function LandingPage() {
                     <Col>
                       <Dropdown>
                         <Dropdown.Toggle variant="success" id="dropdown-basic">
-                          Covid Info
+                          코로나정보
                         </Dropdown.Toggle>
-
-                        <Dropdown.Menu className="covid-dropdown-menu">
+                        <Dropdown.Menu>
                           <Dropdown.Item href="/covid-occur">
                             시도별 발생 현황
                           </Dropdown.Item>
                           <Dropdown.Item href="/covid-gender">
                             연령별, 성별 발생현황
                           </Dropdown.Item>
-                          <Dropdown.Item href="/covid-hospital">
-                            전화상담 병의원 정보
+                          <Dropdown.Item href="/covid-hosipital">
+                            전화상담 병원 정보
+                          </Dropdown.Item>
+                          <Dropdown.Item href="/covid-gender">
+                            연령별, 성별 발생현황
                           </Dropdown.Item>
                         </Dropdown.Menu>
                       </Dropdown>
@@ -49,7 +53,7 @@ function LandingPage() {
                       <Link to="/board">
                         <Button
                           variant="outline-primary"
-                          size="lg"
+                          size="sm"
                           className="landingbutton"
                         >
                           게시판
@@ -64,11 +68,15 @@ function LandingPage() {
                 <Row>
                   <Col>
                     <Dropdown>
-                      <Dropdown.Toggle variant="success" id="dropdown-basic">
-                        Covid Info
+                      <Dropdown.Toggle
+                        variant="success"
+                        id="dropdown-basic"
+                        className="landingbutton"
+                      >
+                        코로나정보
                       </Dropdown.Toggle>
 
-                      <Dropdown.Menu className="covid-dropdown-menu">
+                      <Dropdown.Menu>
                         <Dropdown.Item href="/covid-total">
                           감염 현황 총괄 통계
                         </Dropdown.Item>
@@ -78,13 +86,19 @@ function LandingPage() {
                         <Dropdown.Item href="/covid-gender">
                           연령별, 성별 발생현황
                         </Dropdown.Item>
+                        <Dropdown.Item href="http://ncov.mohw.go.kr/">
+                          코로나19 공식홈페이지
+                        </Dropdown.Item>
+                        <Dropdown.Item href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98">
+                          코로나19 네이버
+                        </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
                   </Col>
                   <Col>
                     <Link to="/login" size="sm">
                       <Button size="sm" className="landingbutton">
-                        Login
+                        로그인
                       </Button>
                     </Link>
                   </Col>
@@ -95,7 +109,7 @@ function LandingPage() {
                         size="sm"
                         className="landingbutton"
                       >
-                        Sign Up
+                        회원가입
                       </Button>
                     </Link>
                   </Col>

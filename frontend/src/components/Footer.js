@@ -10,7 +10,7 @@ const Footer = () => {
         bottom: 0,
         display: "flex",
         justifyContent: "center",
-        backgroundColor: "#ddd2ce",
+        backgroundColor: "#8faddf",
       }}
     >
       <Container>
