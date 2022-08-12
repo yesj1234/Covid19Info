@@ -9,7 +9,19 @@
 - 프로젝트 배포 : 헤로쿠(https://notezipper-clone.herokuapp.com/)
 - 사용 스택 : React, Express, MongoDB, Node.js
 - dependency : axios, bcryptjs, colors, dotenv, express, express-async-handler, jsonwebtoken, mongoose, node-fetch, xml2js 등
+- 소요 기간 : 3주 
+- 팀원 : 고하나, 김지영, 정하연, 양승준 
 - 디렉토리 구조 :
+<<<<<<< HEAD
+=======
+  - frontend
+  ![frontend](https://user-images.githubusercontent.com/86505279/184131614-1274ca6e-f4d8-439f-ba0c-dedd70f9c8a3.png)
+  - backend
+  ![backend](https://user-images.githubusercontent.com/86505279/184131666-0b306996-6030-406b-88f5-5f644138de1e.png)
+  - 전체 구조 
+  ![all](https://user-images.githubusercontent.com/86505279/184131682-3ffc2ac2-14f2-44ed-b326-63eb961aea86.png)
+
+>>>>>>> 5208078856b7ce804404b2fc3e2a6a52c6725d59
 
 2. frontend 코드 설명
 
@@ -70,7 +82,8 @@ function App() {
 }
 ```
 
-- 제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
+- Frontend>src>screens>LandingPage>LandingPage.js
+제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
 
 ```javascript
 function LandingPage() {
@@ -181,7 +194,7 @@ export default LandingPage;
 ```
 
 - Frontend>src>screens>CovidInfo>CovidHospital.js
-  공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
+ 공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
 
 ```javascript
 function CovidHospital() {

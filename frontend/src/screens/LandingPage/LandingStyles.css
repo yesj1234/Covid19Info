@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200&display=swap");
 
 .title {
   font-family: "Black Han Sans", sans-serif;
@@ -29,6 +30,9 @@
   align-items: center;
   background-position: center;
   background-size: cover;
+}
+#main-content {
+  padding-bottom: 150px;
 }
 .containerBack {
   background-color: #b5ccea;
@@ -61,6 +65,10 @@
 }
 #dropdown-basic {
   font-size: 14px;
+  width: 100%;
+}
+.dropdown-menu {
+  font-family: "Black Han Sans";
 }
 
 @media only screen and (min-width: 1200px) {
