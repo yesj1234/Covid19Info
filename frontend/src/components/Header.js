@@ -34,10 +34,16 @@ const Header = ({ setSearch }) => {
                 <NavDropdown.Item href="/covid-hospital">
                   전화상담 병의원 정보
                 </NavDropdown.Item>
-                <NavDropdown.Item href="http://ncov.mohw.go.kr/">
+                <NavDropdown.Item
+                  href="http://ncov.mohw.go.kr/"
+                  target="_blank"
+                >
                   코로나19 공식홈페이지
                 </NavDropdown.Item>
-                <NavDropdown.Item href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98">
+                <NavDropdown.Item
+                  href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98"
+                  target="_blank"
+                >
                   코로나19 네이버
                 </NavDropdown.Item>
               </NavDropdown>

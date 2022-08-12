@@ -90,10 +90,16 @@ function LandingPage() {
                         <Dropdown.Item href="/covid-gender">
                           연령별, 성별 발생현황
                         </Dropdown.Item>
-                        <Dropdown.Item href="http://ncov.mohw.go.kr/">
+                        <Dropdown.Item
+                          href="http://ncov.mohw.go.kr/"
+                          target="_blank"
+                        >
                           코로나19 공식홈페이지
                         </Dropdown.Item>
-                        <Dropdown.Item href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98">
+                        <Dropdown.Item
+                          href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=%EC%BD%94%EB%A1%9C%EB%82%98"
+                          target="_blank"
+                        >
                           코로나19 네이버
                         </Dropdown.Item>
                       </Dropdown.Menu>
