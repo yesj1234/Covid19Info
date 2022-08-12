@@ -81,14 +81,14 @@ function LandingPage() {
                       </Dropdown.Toggle>
 
                       <Dropdown.Menu>
-                        <Dropdown.Item href="/covid-total">
-                          감염 현황 총괄 통계
-                        </Dropdown.Item>
                         <Dropdown.Item href="/covid-occur">
                           시도별 발생 현황
                         </Dropdown.Item>
                         <Dropdown.Item href="/covid-gender">
                           연령별, 성별 발생현황
+                        </Dropdown.Item>
+                        <Dropdown.Item href="/covid-hospital">
+                          전화상담 병원 정보
                         </Dropdown.Item>
                         <Dropdown.Item
                           href="http://ncov.mohw.go.kr/"
