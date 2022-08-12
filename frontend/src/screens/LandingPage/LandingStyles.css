@@ -31,15 +31,15 @@
   background-position: center;
   background-size: cover;
 }
-#main-content {
+/* #main-content {
   padding-bottom: 150px;
-}
+} */
 .containerBack {
   background-color: #b5ccea;
   height: 670px;
   display: flex;
   align-items: center;
-  /* background-image: url("../../back.png"); */
+  background-image: url("../../back.png");
   margin-left: 15%;
   margin-right: 15%;
   background-position: center;
