@@ -1,4 +1,4 @@
-# notezipper-clone
+# Covid19Info
 
 #### 해당 프로젝트는 https://github.com/piyush-eon/notezipper 를 참고하여 진행한 프로젝트입니다.
 
