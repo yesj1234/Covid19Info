@@ -6,7 +6,7 @@
 
 - 프로젝트명 : 이겨내요 코로나
 - 프로젝트 개요 : 공공데이터 포털의 open API를 활용해 코로나에 대한 다양한 정보 제공과 유저들간의 간단한 정보 공유 게시판 기능을 제공하는 웹사이트 프로젝트입니다.
-- 프로젝트 배포 : 헤로쿠(https://notezipper-clone.herokuapp.com/)
+- 프로젝트 배포 : 헤로쿠(https://cov1dinfo.herokuapp.com/)
 - 사용 스택 : React, Express, MongoDB, Node.js
 - dependency : axios, bcryptjs, colors, dotenv, express, express-async-handler, jsonwebtoken, mongoose, node-fetch, xml2js 등
 - 소요 기간 : 3주
