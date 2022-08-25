@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs"); //비밀번호를 저장할 때 암호화 할 library
 
 const userSchema = mongoose.Schema({
   name: {
@@ -31,7 +31,7 @@ const userSchema = mongoose.Schema({
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
-// will encrypt password everytime its saved
+// 입력받은 비밀번호를 암호화 하여 저장합니다.
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
     next;
@@ -40,5 +40,6 @@ userSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+//User에 userSchema를 모델에 적용해줍니다.
 const User = mongoose.model("User", userSchema);
 module.exports = User;

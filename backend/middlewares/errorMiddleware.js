@@ -1,3 +1,4 @@
+//잘못된 경로로 요청이 들어올 경우 notFound error 를 리턴해줍니다.
 const notFound = (req, res, next) => {
   const error = new Error(`Not Found - ${req.originalUrl}`);
   res.status(404);

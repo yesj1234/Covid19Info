@@ -18,6 +18,9 @@ import CovidGender from "./screens/CovidInfo/CovidGender";
 import CovidHospital from "./screens/CovidInfo/CovidHospital";
 function App() {
   return (
+    //Routing을 담당해줄 BrowserRouter로 전체 App의 구조를 감싸줍니다.
+    //Header와 Footer는 어떤 경로에도 항상 포함 될 것이기 때문에 Routes바깥에 위치시켜줍니다.
+    //정해진 경로로 요청이 들어올 경우 미리 정의 해둔 페이지를 보여주도록 Route를 위치시켜줍니다.
     <BrowserRouter>
       <main className="App">
         <Header />

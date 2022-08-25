@@ -6,6 +6,7 @@ import { Container, Carousel } from "react-bootstrap";
 import BarChart from "../../components/BarChart";
 import "./style.css";
 function CovidGender() {
+  //BarChart에 전달해줄 data의 형식입니다.
   const [dt, setDt] = useState([
     {
       gubun: "AD",
@@ -154,7 +155,7 @@ function CovidGender() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    //데이터 가공
+    //데이터 가공함수입니다.
     const dataHandler = (item) => {
       let newData = [...dt];
       item.forEach((each, index) => {
@@ -172,18 +173,19 @@ function CovidGender() {
     const today = moment().subtract(1, "days").format("YYYYMMDD");
     const params = { startCreateDt: today, endCreateDt: today };
     setLoading(true);
+    //페이지에 DOM요소가 모두 업데이트 되고 나면 useEffect의 첫번째 인자로 전달 해준 callback함수가 실행됩니다.
+    //페이지를 열었을 때 한번만 실행하면 되기 때문에 dependency에 빈 배열을 넣어줍니다.
     axios({
       method: "get",
-      url: `/api/covid-info/gender`,
+      url: `/api/covid-info/gender`, //해당 경로로 서버에 요청을 보내면
       params: params,
     })
       .then((res) => {
-        console.log(res.data.item);
-        return res.data.item;
+        return res.data.item; //알맞은 응답을 받아 데이터 가공에 필요한 item을 받아서
       })
       .then((item) => {
-        dataHandler(item);
-        setLoading(false);
+        dataHandler(item); //미리 정의해둔 데이터 가공함수에 넣어주고
+        setLoading(false); //loading 상태를 false로 바꿔줍니다.
       })
       .catch((err) => {
         console.log(err);

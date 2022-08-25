@@ -1,10 +1,7 @@
 import { ResponsiveBar } from "@nivo/bar";
-
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+// CovidGender Page에 사용될 BarChart component입니다.
+// https://nivo.rocks/ 에서 제공하는 Bar 그래프를 사용했습니다.
+// BarChart를 활용할 페이지에서 data, keys, title를 props로 전달해주면 component가 페이지에 BarChar를 그려줄 것입니다.
 function BarChart({ data, keys, title }) {
   return (
     <ResponsiveBar

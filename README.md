@@ -9,19 +9,18 @@
 - 프로젝트 배포 : 헤로쿠(https://notezipper-clone.herokuapp.com/)
 - 사용 스택 : React, Express, MongoDB, Node.js
 - dependency : axios, bcryptjs, colors, dotenv, express, express-async-handler, jsonwebtoken, mongoose, node-fetch, xml2js 등
-- 소요 기간 : 3주 
-- 팀원 : 고하나, 김지영, 정하연, 양승준 
+- 소요 기간 : 3주
+- 팀원 : 고하나, 김지영, 정하연, 양승준
 - 디렉토리 구조 :
-<<<<<<< HEAD
-=======
-  - frontend
-  ![frontend](https://user-images.githubusercontent.com/86505279/184131614-1274ca6e-f4d8-439f-ba0c-dedd70f9c8a3.png)
-  - backend
-  ![backend](https://user-images.githubusercontent.com/86505279/184131666-0b306996-6030-406b-88f5-5f644138de1e.png)
-  - 전체 구조 
-  ![all](https://user-images.githubusercontent.com/86505279/184131682-3ffc2ac2-14f2-44ed-b326-63eb961aea86.png)
 
->>>>>>> 5208078856b7ce804404b2fc3e2a6a52c6725d59
+=======
+
+- frontend
+  ![frontend](https://user-images.githubusercontent.com/86505279/184131614-1274ca6e-f4d8-439f-ba0c-dedd70f9c8a3.png)
+- backend
+  ![backend](https://user-images.githubusercontent.com/86505279/184131666-0b306996-6030-406b-88f5-5f644138de1e.png)
+- 전체 구조
+  ![all](https://user-images.githubusercontent.com/86505279/184131682-3ffc2ac2-14f2-44ed-b326-63eb961aea86.png)
 
 2. frontend 코드 설명
 
@@ -83,7 +82,7 @@ function App() {
 ```
 
 - Frontend>src>screens>LandingPage>LandingPage.js
-제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
+  제일 처음 보여지는 LandingPage입니다. 메뉴바, 프로젝트에 대한 소개 등이 있는 페이지입니다. Redux로 로그인 상태를 받아오고 로그인이 안된 상태라면 회원가입버튼과 로그인 버튼이 보이도록 해주고, 로그인이 된 상태라면 게시판 버튼이 보이도록 해주었습니다.
 
 ```javascript
 function LandingPage() {
@@ -194,7 +193,7 @@ export default LandingPage;
 ```
 
 - Frontend>src>screens>CovidInfo>CovidHospital.js
- 공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
+  공공데이터 포털의 open api를 통해 전화상담이 가능한 병원에 대한 정보를 받아와 지도에 표시해주고 한 페이지에 4개씩 보여줍니다. Kakao Map과 React-bootstrap을 활용해 만들었습니다.
 
 ```javascript
 function CovidHospital() {
@@ -389,7 +388,7 @@ export default CovidHospital;
 
 ```javascript
 function CovidGender() {
-  // @nivo/Bar 에서 제공하는 Bar컴포넌트가 필요로 하는 데이터의 형식입니다. 공공데이터 포털에서 받아온 데이터도 마찬가지로 다음과 같은 형식으로 가공해주어야 합니다.
+  //BarChart에 전달해줄 data의 형식입니다.
   const [dt, setDt] = useState([
     {
       gubun: "AD",
@@ -538,7 +537,7 @@ function CovidGender() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    //데이터 가공함수입니다. 미리 기본값으로 저장해둔 dt를 복사 한 후 받아온 데이터들로 필드에 맞게 데이터를 바꾸어 주고 setDt함수로 새롭게 저장해줍니다.
+    //데이터 가공함수입니다.
     const dataHandler = (item) => {
       let newData = [...dt];
       item.forEach((each, index) => {
@@ -552,29 +551,28 @@ function CovidGender() {
       setDt(newData);
       console.log(newData);
     };
-    //useEffect함수의 dependency에 아무것도 넣어 주지 않으므로 화면이 전체적으로 렌더링 된 이후에 useEffect 내부에 넣어둔 코드들이 실행 될 것입니다. 위에 정의해둔 dataHandler함수를 사용해 axios모듈을 통해 서버로 요청을 보내면 서버에서 공공데이터 포털의 open api에 다시 요청을 보내 데이터를 받아와서 응답을 보내줍니다.
+
     const today = moment().subtract(1, "days").format("YYYYMMDD");
     const params = { startCreateDt: today, endCreateDt: today };
     setLoading(true);
+    //페이지에 DOM요소가 모두 업데이트 되고 나면 useEffect의 첫번째 인자로 전달 해준 callback함수가 실행됩니다.
+    //페이지를 열었을 때 한번만 실행하면 되기 때문에 dependency에 빈 배열을 넣어줍니다.
     axios({
       method: "get",
-      url: `/api/covid-info/gender`,
+      url: `/api/covid-info/gender`, //해당 경로로 서버에 요청을 보내면
       params: params,
     })
       .then((res) => {
-        //저한테 필요한 데이터는 res.data.item안에 들어있으므로 필요한 만큼만 받겠습니다.
-        console.log(res.data.item);
-        return res.data.item;
+        return res.data.item; //알맞은 응답을 받아 데이터 가공에 필요한 item을 받아서
       })
       .then((item) => {
-        dataHandler(item);
-        setLoading(false);
+        dataHandler(item); //미리 정의해둔 데이터 가공함수에 넣어주고
+        setLoading(false); //loading 상태를 false로 바꿔줍니다.
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
-  //데이터간의 숫자 차이가 너무 커서 한 그래프 안에 다 보여줄 수 가 없습니다. 따라서 항목별로 따로따로 보여주기 위해 Carousel을 활용했습니다. 다음과 같이 정의해둔 key들은 BarChart의 인수로 들어갈 key들입니다.
   const confKeys = ["confCase"];
   const confRateKeys = ["confCaseRate"];
   const deathKeys = ["death"];
@@ -583,7 +581,7 @@ function CovidGender() {
 
   return (
     <MainScreen title="코로나19 연령별 성별 발생현황">
-      <Carousel fade interval={null}>
+      <Carousel fade interval={null} style={{ overflow: "hidden" }}>
         <Carousel.Item>
           <Container style={{ height: "70vh", backgroundColor: "#769bd6" }}>
             <BarChart
@@ -633,11 +631,12 @@ function CovidGender() {
     </MainScreen>
   );
 }
+
 export default CovidGender;
 ```
 
 - Frontend>src>screens>CovidInfo>CovidOccur.js
-  CovidOccur.js파일도 CovidGender.js파일과 마찬가지로 공공데이터 포털에서 데이터를 받아오긴 하지만 Bar그래프 형식이 아닌 Pie 그래프 형식으로 데이터를 보여줍니다. 각 지역별로 확진자, 사망자, 전일대비 확진자 증감 을 한눈에 확인 할 수 있습니다.
+  CovidOccur.js파일도 CovidGender.js파일과 마찬가지로 공공데이터 포털에서 데이터를 받아오고 Pie 그래프 형식으로 데이터를 보여줍니다. 각 지역별로 확진자, 사망자, 전일대비 확진자 증감 을 한눈에 확인 할 수 있습니다.
 
 ```javascript
 function CovidOccur() {
@@ -664,7 +663,7 @@ function CovidOccur() {
         };
         arrtemp2Box.push(obj);
       });
-      //받아오는 데이터에 같은 Object가 중복으로 들어간 경우가 너무 많이 있어서 중복을 없애주기 위해 다음과 같은 uniqueArr을 정의해주었습니다. https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/ (중복없애기)
+      //받아오는 데이터에 같은 Object가 중복으로 들어간 경우가 너무 많이 있어서 중복을 없애주기 위해 key가 unique한 Map 객체의 특징을 이용해 uniqueArr을 정의해주었습니다. https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/ (중복없애기)
       let uniqueArr = [
         ...new Map(arrtemp2Box.map((item) => [item["id"], item])).values(),
       ];
@@ -786,9 +785,9 @@ export default CovidOccur;
    - server.js
 
 ```javascript
-require("dotenv").config(); //.env에 설정해둔 환경변수를 사용하기 위해 가장 위에 선언해줍니다.
-const express = require("express");
-const connectDB = require("./backend/config/db");
+require("dotenv").config(); //환경변수(process.env.변수명)를 사용하기 위해 dotenv 를 사용했습니다. 환경 변수를 사용하기 전에 선언해주어야 오류 없이 사용이 가능합니다.
+const express = require("express"); //express 객체선언
+const connectDB = require("./backend/config/db"); //MongoDB 연결
 const colors = require("colors");
 const path = require("path");
 const userRoutes = require("./backend/routes/userRoutes");
@@ -801,16 +800,16 @@ const {
 } = require("./backend/middlewares/errorMiddleware.js");
 //END OF IMPORT --------------------------------------------------
 //
-connectDB(); //MongoDB에 연결
-const app = express(); // express로 서버를 열어주기 위해 app을 생성해줍니다.
-app.use(express.json()); //json데이타를 사용하기 위해서 미들웨어로 추가해줍니다.
-//Routes
+connectDB(); //DB에 연결해줍니다.
+const app = express(); // express instance app 생성
+app.use(express.json()); //json data를 받아오기 위해 미들웨어로 설정해줍니다.
+//Routes (들어오는 요청을 처리해줄 라우터들을 연결해줍니다. )
 app.use("/api/users", userRoutes);
 app.use("/api/notes", noteRoutes);
 app.use("/api/board", postRoutes);
 app.use("/api/covid-info", covidRoutes);
 //END OF ROUTES------------------------
-//deployment 배포시에 사용될 코드입니다.
+//deployment
 __dirname = path.resolve();
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/frontend/build")));
@@ -824,8 +823,8 @@ if (process.env.NODE_ENV === "production") {
 }
 //END OF DEPLOYMENT-------------------
 //ERROR HANDLING MIDDLEWARES
-app.use(notFound);
-app.use(errorHandler);
+app.use(notFound); //잘못된 경로로 요청이 들어올 경우 notFound error 미들웨어 연결.
+app.use(errorHandler); //정상적인 응답이 아닐경우 일반적으로 적용해줄 에러 헨들러도 연결해줍니다.
 //SERVER START
 const PORT = process.env.PORT || 4000;
 app.listen(
